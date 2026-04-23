@@ -1,4 +1,4 @@
-Vinicios Andrei Mensen 445509, Vicenzo Henrique Peruzzo, Jorge Luiz Lopes Polli - 369818, João Vitor Chüler Battistella - 447607, Vinicius Dalpasquale - 412017, Joao Fernando Piovezan - 377015.
+Vinicios Andrei Mensen 445509, Vicenzo Henrique Peruzzo, Jorge Luiz Lopes Polli - 369818, João Vitor Chüler Battistella - 447607, Vinicius Dalpasquale - 412017, Joao Fernando Piovezan - 377015, Léo Bauer.
 
 *Introdução*:
  As novas tecnologias mudaram a forma como as pessoas acessam informação, fazendo com que bibliotecas se adaptem a um público mais digital e exigente, que busca praticidade e personalização. Nesse contexto, as bibliotecas passam a usar tecnologia e novas formas de comunicação para atrair e engajar usuários, deixando de ser apenas espaços físicos e se tornando ambientes mais interativos e acessíveis.
