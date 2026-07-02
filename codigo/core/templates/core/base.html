@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Biblioteca{% endblock %}</title>
+  <style>
+    :root {
+      --azul: #24425c;
+      --azul-escuro: #1a3247;
+      --azul-claro: #e8eef4;
+      --cinza: #5c6670;
+      --borda: #d8dde3;
+      --vermelho: #9c3a3a;
+      --fundo: #eef0f2;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--fundo);
+      color: #2b2f33;
+      line-height: 1.5;
+    }
+    header {
+      background: var(--azul);
+      border-bottom: 4px solid var(--azul-escuro);
+      color: #fff;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: stretch;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    header .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      padding: .9rem 0;
+    }
+    header .brand small {
+      display: block;
+      font-size: .68rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #b9c8d6;
+    }
+    nav { display: flex; align-items: stretch; }
+    nav a {
+      color: #c9d5e0;
+      text-decoration: none;
+      padding: 0 .9rem;
+      display: flex;
+      align-items: center;
+      font-family: system-ui, sans-serif;
+      font-size: .9rem;
+      border-bottom: 3px solid transparent;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,.06); border-bottom-color: #c9d5e0; }
+    .sair { margin-left: auto; align-self: center; }
+    main { max-width: 920px; margin: 2rem auto 3rem; padding: 0 1.25rem; }
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--azul-escuro);
+      border-bottom: 2px solid var(--borda);
+      padding-bottom: .5rem;
+      margin-bottom: 1.2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--borda);
+      border-radius: 3px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    table { width: 100%; border-collapse: collapse; font-family: system-ui, sans-serif; font-size: .92rem; }
+    th, td { text-align: left; padding: .55rem .75rem; border-bottom: 1px solid var(--borda); }
+    th {
+      background: var(--azul-claro);
+      color: var(--azul-escuro);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border-bottom: 2px solid var(--azul);
+    }
+    tr:hover td { background: #f7f9fb; }
+    .btn {
+      display: inline-block;
+      background: var(--azul);
+      color: #fff;
+      border: 1px solid var(--azul-escuro);
+      border-radius: 3px;
+      padding: .45rem 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: system-ui, sans-serif;
+      font-size: .85rem;
+    }
+    .btn:hover { background: var(--azul-escuro); }
+    .btn.danger { background: var(--vermelho); border-color: #7e2e2e; }
+    .btn.danger:hover { background: #7e2e2e; }
+    .btn.secondary { background: #fff; color: var(--azul); border-color: var(--azul); }
+    .btn.secondary:hover { background: var(--azul-claro); }
+    form p { margin-bottom: .9rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: .5rem .6rem;
+      border: 1px solid #aab3bc;
+      border-radius: 3px;
+      font-family: system-ui, sans-serif;
+      font-size: .92rem;
+      background: #fdfdfd;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--azul);
+      background: #fff;
+      box-shadow: 0 0 0 2px rgba(36,66,92,.15);
+    }
+    textarea { min-height: 110px; }
+    label {
+      display: block;
+      margin-bottom: .25rem;
+      font-family: system-ui, sans-serif;
+      font-weight: 600;
+      font-size: .82rem;
+      color: var(--cinza);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .helptext { font-family: system-ui, sans-serif; font-size: .78rem; color: var(--cinza); }
+    .messages { list-style: none; margin-bottom: 1.2rem; font-family: system-ui, sans-serif; font-size: .9rem; }
+    .messages li {
+      background: #eef5ee;
+      border: 1px solid #b7cfb7;
+      border-left: 4px solid #4a7c4a;
+      border-radius: 3px;
+      padding: .65rem 1rem;
+    }
+    .errorlist { color: var(--vermelho); list-style: none; font-family: system-ui, sans-serif; font-size: .82rem; }
+    .actions { white-space: nowrap; text-align: right; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="brand">Biblioteca<small>Sistema de Gestão</small></span>
+  <nav>
+    {% if user.is_authenticated %}
+      <a href="{% url 'home' %}">Início</a>
+      <a href="{% url 'livro_list' %}">Livros</a>
+      <a href="{% url 'autor_list' %}">Autores</a>
+      <a href="{% url 'consulta' %}">Consulta</a>
+      <a href="{% url 'contato' %}">Contato</a>
+    {% endif %}
+  </nav>
+  {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" class="sair">{% csrf_token %}
+      <button class="btn secondary" type="submit">Sair ({{ user.username }})</button>
+    </form>
+  {% endif %}
+</header>
+<main>
+  {% if messages %}<ul class="messages">{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>{% endif %}
+  {% block content %}{% endblock %}
+</main>
+</body>
+</html>

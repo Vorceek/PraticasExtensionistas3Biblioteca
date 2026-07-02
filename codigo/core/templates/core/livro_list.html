@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+{% block title %}Livros - Biblioteca{% endblock %}
+{% block content %}
+<div class="card">
+  <h1 style="margin-bottom:1rem">Livros</h1>
+  <p style="margin-bottom:1rem"><a class="btn" href="{% url 'livro_novo' %}">+ Novo livro</a></p>
+  <table>
+    <tr><th>Título</th><th>Ano</th><th>Autores</th><th></th></tr>
+    {% for livro in livros %}
+    <tr>
+      <td>{{ livro.titulo }}</td>
+      <td>{{ livro.ano }}</td>
+      <td>{{ livro.autores.all|join:", " }}</td>
+      <td class="actions">
+        <a class="btn secondary" href="{% url 'livro_editar' livro.pk %}">Editar</a>
+        <a class="btn danger" href="{% url 'livro_excluir' livro.pk %}">Excluir</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nenhum livro cadastrado.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

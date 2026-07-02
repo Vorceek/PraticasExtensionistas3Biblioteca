@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% block title %}{% if autor %}Editar{% else %}Novo{% endif %} autor - Biblioteca{% endblock %}
+{% block content %}
+<div class="card" style="max-width:520px">
+  <h1 style="margin-bottom:1rem">{% if autor %}Editar autor{% else %}Novo autor{% endif %}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Salvar</button>
+    <a class="btn secondary" href="{% url 'autor_list' %}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

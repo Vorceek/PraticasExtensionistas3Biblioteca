@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Bem-vindo, {{ user.username }}</h1>
+  <p style="margin-bottom:1.2rem">Sistema de gestão da biblioteca. Utilize o menu acima para gerenciar o acervo, consultar livros ou entrar em contato com a equipe.</p>
+  <p style="border:1px solid var(--borda);border-left:4px solid var(--azul);border-radius:3px;padding:.8rem 1.2rem;margin-bottom:1.4rem;background:var(--azul-claro)">
+    Acervo atual: <strong>{{ total_livros }}</strong> livro(s) cadastrado(s).
+  </p>
+  <a class="btn" href="{% url 'livro_list' %}">Gerenciar livros</a>
+  <a class="btn secondary" href="{% url 'consulta' %}">Consultar acervo</a>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% block title %}Excluir autor - Biblioteca{% endblock %}
+{% block content %}
+<div class="card" style="max-width:520px">
+  <h1 style="margin-bottom:1rem">Excluir autor</h1>
+  <p style="margin-bottom:1rem">Confirma a exclusão de <strong>{{ autor.nome }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn danger" type="submit">Excluir</button>
+    <a class="btn secondary" href="{% url 'autor_list' %}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
