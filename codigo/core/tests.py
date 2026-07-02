@@ -43,3 +43,10 @@ class SmokeTest(TestCase):
         # contato grava no banco
         self.client.post("/contato/", {"nome": "Ana", "email": "a@a.com", "mensagem": "Oi"})
         self.assertEqual(Contato.objects.count(), 1)
+
+        # mensagens: usuario comum nao acessa, staff acessa
+        self.assertEqual(self.client.get("/mensagens/").status_code, 302)
+        User.objects.create_user("chefe", password="chefe123", is_staff=True)
+        self.client.login(username="chefe", password="chefe123")
+        resp = self.client.get("/mensagens/")
+        self.assertContains(resp, "Ana")

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
 from django.forms import ModelForm
 from django.shortcuts import get_object_or_404, redirect, render
@@ -95,6 +95,14 @@ def consulta(request):
     if q:
         resultados = resultados.filter(Q(titulo__icontains=q) | Q(autores__nome__icontains=q)).distinct()
     return render(request, "core/consulta.html", {"q": q, "resultados": resultados})
+
+
+# ---------- Mensagens recebidas (somente administrador) ----------
+
+@user_passes_test(lambda u: u.is_staff, login_url="login")
+def mensagens(request):
+    lista = Contato.objects.order_by("-enviado_em")
+    return render(request, "core/mensagens.html", {"mensagens": lista})
 
 
 # ---------- Contato ----------

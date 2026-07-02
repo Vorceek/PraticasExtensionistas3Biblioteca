@@ -17,4 +17,5 @@ urlpatterns = [
     path("autores/<int:pk>/excluir/", views.autor_delete, name="autor_excluir"),
     path("consulta/", views.consulta, name="consulta"),
     path("contato/", views.contato, name="contato"),
+    path("mensagens/", views.mensagens, name="mensagens"),
 ]

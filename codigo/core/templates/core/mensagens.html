@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% block title %}Mensagens - Biblioteca{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Mensagens recebidas</h1>
+  <table>
+    <tr><th>Data</th><th>Nome</th><th>E-mail</th><th>Mensagem</th></tr>
+    {% for m in mensagens %}
+    <tr>
+      <td style="white-space:nowrap">{{ m.enviado_em|date:"d/m/Y H:i" }}</td>
+      <td>{{ m.nome }}</td>
+      <td>{{ m.email }}</td>
+      <td>{{ m.mensagem }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nenhuma mensagem recebida.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

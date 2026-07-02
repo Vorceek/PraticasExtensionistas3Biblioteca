@@ -46,6 +46,7 @@ Protótipo funcional (MVP) de um sistema web de gestão de biblioteca, desenvolv
 | CRUD de Autores | `/autores/` | Cadastrar, listar, editar e excluir autores |
 | Consulta ao acervo | `/consulta/` | Pesquisa por título ou autor, com número de empréstimos |
 | Contato | `/contato/` | Formulário de contato com os desenvolvedores |
+| Mensagens recebidas | `/mensagens/` | Visualização das mensagens de contato (somente administrador) |
 | Painel administrativo | `/admin/` | Gestão de usuários (leitores), empréstimos e mensagens |
 
 ### Capturas de tela
@@ -75,6 +76,10 @@ Protótipo funcional (MVP) de um sistema web de gestão de biblioteca, desenvolv
 **Formulário de contato**
 
 ![Formulário de contato](capturas/contato.png)
+
+**Mensagens recebidas (somente administrador)**
+
+![Mensagens recebidas](capturas/mensagens.png)
 
 ## Modelagem
 
